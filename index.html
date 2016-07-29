@@ -16,6 +16,15 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
     <script>
+
+    $(document).ready(function(){
+      console.log('is run');
+      fileUpload();
+    });
+
+    function fileUpload(){
+
+
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyA-kf4GXE5aG41_ZzvVtFangP3QBBGFwm4",
@@ -63,6 +72,7 @@
       var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
 
       $('#image').on('change', function(){
+        console.log('0');
         var path = $(this).val().split('\\');
         file = path[path.length-1];
       
@@ -111,7 +121,7 @@
       });
       
 
-
+    }
     </script>
     
     <title>Emtete.GitHub.com by emtete</title>
@@ -121,7 +131,7 @@
     <header>
       <div class="inner">
         <h1>Emtete.GitHub.com</h1>
-        <h2>github wqaa</h2>
+        <h2>github wqasssa</h2>
         <a href="https://github.com/emtete" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
