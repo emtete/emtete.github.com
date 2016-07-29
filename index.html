@@ -24,7 +24,7 @@
 
     function fileUpload(){
 
-
+      console.log('a');
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyA-kf4GXE5aG41_ZzvVtFangP3QBBGFwm4",
@@ -33,7 +33,7 @@
         storageBucket: "imagestorage-3ff43.appspot.com",
       };
       firebase.initializeApp(config);
-
+      console.log('b');
       // Points to the root reference
       var storageRef = firebase.storage().ref();
 
@@ -53,7 +53,7 @@
 
       // Points to 'images'
       var imagesRef = spaceRef.parent;
-
+console.log('c');
 
 
 
@@ -132,7 +132,7 @@
     <header>
       <div class="inner">
         <h1>Emtete.GitHub.com</h1>
-        <h2>github wqasssaqqq</h2>
+        <h2>github wsssssssssssssssss</h2>
         <a href="https://github.com/emtete" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
