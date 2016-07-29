@@ -52,10 +52,7 @@
       // File or Blob named mountains.jpg
       var file = '';
 
-      $('#image').on('change', function(){
-        var path = $(this).val().split('\\');
-        file = path[path.length-1];
-      });
+      
 
       // Create the file metadata
       var metadata = {
@@ -65,40 +62,48 @@
       // Upload file and metadata to the object 'images/mountains.jpg'
       var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
 
-      // Listen for state changes, errors, and completion of the upload.
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function(snapshot) {
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case firebase.storage.TaskState.PAUSED: // or 'paused'
-              console.log('Upload is paused');
+      $('#image').on('change', function(){
+        var path = $(this).val().split('\\');
+        file = path[path.length-1];
+      
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          function(snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+          }, function(error) {
+          switch (error.code) {
+            case 'storage/unauthorized':
+              // User doesn't have permission to access the object
               break;
-            case firebase.storage.TaskState.RUNNING: // or 'running'
-              console.log('Upload is running');
+
+            case 'storage/canceled':
+              // User canceled the upload
+              break;
+
+            //...
+
+            case 'storage/unknown':
+              // Unknown error occurred, inspect error.serverResponse
               break;
           }
-        }, function(error) {
-        switch (error.code) {
-          case 'storage/unauthorized':
-            // User doesn't have permission to access the object
-            break;
+        }, function() {
+          // Upload completed successfully, now we can get the download URL
+          var downloadURL = uploadTask.snapshot.downloadURL;
+        });
 
-          case 'storage/canceled':
-            // User canceled the upload
-            break;
-
-          //...
-
-          case 'storage/unknown':
-            // Unknown error occurred, inspect error.serverResponse
-            break;
-        }
-      }, function() {
-        // Upload completed successfully, now we can get the download URL
-        var downloadURL = uploadTask.snapshot.downloadURL;
       });
+      
 
 
     </script>
@@ -110,7 +115,7 @@
     <header>
       <div class="inner">
         <h1>Emtete.GitHub.com</h1>
-        <h2>github q</h2>
+        <h2>github w</h2>
         <a href="https://github.com/emtete" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
