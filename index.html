@@ -85,16 +85,19 @@
           switch (error.code) {
             case 'storage/unauthorized':
               // User doesn't have permission to access the object
+              console.log('storage/unauthorized');
               break;
 
             case 'storage/canceled':
               // User canceled the upload
+              console.log('storage/canceled');
               break;
 
             //...
 
             case 'storage/unknown':
               // Unknown error occurred, inspect error.serverResponse
+              console.log('storage/unknown');
               break;
           }
         }, function() {
@@ -115,7 +118,7 @@
     <header>
       <div class="inner">
         <h1>Emtete.GitHub.com</h1>
-        <h2>github w</h2>
+        <h2>github pagessss</h2>
         <a href="https://github.com/emtete" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
