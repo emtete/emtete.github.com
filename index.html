@@ -14,7 +14,6 @@
     <![endif]-->
 
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -25,9 +24,6 @@
         storageBucket: "imagestorage-3ff43.appspot.com",
       };
       firebase.initializeApp(config);
-
-
-
 
       // Points to the root reference
       var storageRef = firebase.storage().ref();
@@ -54,7 +50,12 @@
 
 
       // File or Blob named mountains.jpg
-      // var file = ${}
+      var file = '';
+
+      $('#image').on('change', function(){
+        var path = $(this).val().split('\\');
+        file = path[path.length-1];
+      });
 
       // Create the file metadata
       var metadata = {
@@ -109,7 +110,7 @@
     <header>
       <div class="inner">
         <h1>Emtete.GitHub.com</h1>
-        <h2>github r</h2>
+        <h2>github q</h2>
         <a href="https://github.com/emtete" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
