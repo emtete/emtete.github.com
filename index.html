@@ -74,7 +74,8 @@
       $('#image').on('change', function(){
         console.log('0');
         var path = $(this).val().split('\\');
-        file = path[path.length-1];
+        // file = path[path.length-1];
+        file = document.getElementById('image').files[0];
       
         console.log('1');
         // Listen for state changes, errors, and completion of the upload.
@@ -131,7 +132,7 @@
     <header>
       <div class="inner">
         <h1>Emtete.GitHub.com</h1>
-        <h2>github wqasssa</h2>
+        <h2>github wqasssaqqq</h2>
         <a href="https://github.com/emtete" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
