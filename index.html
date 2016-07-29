@@ -72,13 +72,14 @@ console.log('c');
 console.log('d');
       $('#image').on('change', function(){
         
-        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
         
         console.log('0');
         var path = $(this).val().split('\\');
         // file = path[path.length-1];
         file = document.getElementById('image').files[0];
       
+        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
         console.log('1');
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -134,7 +135,7 @@ console.log('d');
     <header>
       <div class="inner">
         <h1>Emtete.GitHub.com</h1>
-        <h2>github wsssssssssssssssssqqqqqq</h2>
+        <h2>github wsssssssssssssssssqqqqqqa</h2>
         <a href="https://github.com/emtete" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
