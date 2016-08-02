@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+   <HEAD>
+      <title>jQuery.i18n.properties: Demo</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+
+<script type="text/javascript" src="switchRow.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<script type="text/javascript">
+	jQuery.ajaxSetup({
+		cache:false,
+	    xhr: function() {
+            try{
+            	if(window.ActiveXObject)
+                   return new window.ActiveXObject("Microsoft.XMLHTTP");
+            } catch(e) { }
+
+           return new window.XMLHttpRequest();
+    	}
+    });
+	var itemCount;
+	
+	$(document).ready(function(){
+		fnList('list');   
+	});
+
+	function fnList(){
+		var url="https://raw.githubusercontent.com/emtete/victor/master/ajaxExam/data.xml";
+	     $.ajax({
+	        type:"GET"
+			,url:url         
+	        ,data: {}    
+	     	,dataType:"text"
+
+	        ,success:function(items){console.log("success");
+
+	        	itemCount = $(items).find("item").length;
+
+	        	fnGenerateHtml(items);		//생성되는 태그는 가장 먼저 실행되야 한다.
+	        	fnCheckboxEventBinding();	//체크박스 하나만 선택되도록.
+				fnDelEventBinding();
+	        	fnSwitchRowEventBinding();
+
+	        }//success
+		    ,error:function(xhr, status, error) {alert(error);}
+	     });//ajax
+	}//fnList
+</script>
+
+</HEAD>
+   
+   <BODY>
+
+<div>
+	<div>
+		<h2>상품메뉴</h2>
+		<div>
+			<div>
+				<span>* 위/아래 버튼을 이용하여 상품메뉴 목록의 순서를 변경할 수 있습니다.</span>
+				<div>
+					<a href="javascript:;" id="upButton">▲ &nbsp;&nbsp; 위</a>
+					<a href="javascript:;" id="downButton">▼ 아래</a>
+				</div>
+			</div>
+			<div>
+				<form action="post" name="" id="">
+					<table>
+						<colgroup>
+							<col width="53"/>
+							<col width="330"/>
+							<col width="85"/>
+							<col width="85"/>
+						</colgroup>
+						<tbody id="tbodyid">
+						<tr id="empty"></tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</BODY>
+</HTML>
